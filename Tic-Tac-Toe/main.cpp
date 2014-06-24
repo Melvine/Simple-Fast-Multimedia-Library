@@ -2,18 +2,20 @@
 #include <SFML/Graphics.hpp>
 #include <cstdio>
 
-using namespace sf;
 
 int main()
 {
-
+    
     sf::RenderWindow window(sf::VideoMode(900, 900), "Tic Tac Toe");     // Create the main window - window.isOpen is now set to True
     sf::Texture gameboard;      //loads the gameboard image
+    sf::Texture pieces;
     sf::Font font;              //font
     sf::Music music;            // Load a music to play
 
     //loads all files
     if (!gameboard.loadFromFile("tictactoe.png"))
+        return EXIT_FAILURE;
+    if (!pieces.loadFromFile("pieces.png"))
         return EXIT_FAILURE;
     if (!font.loadFromFile("arial.ttf"))
         return EXIT_FAILURE;
@@ -22,6 +24,7 @@ int main()
 
     //renders the use of the files
     sf::Sprite background(gameboard);       //puts background in window
+    sf::Sprite piece(pieces, sf::IntRect(0,0,280,280));
     music.play();
 
     // Start the game loop
@@ -29,6 +32,11 @@ int main()
     {
         // Process events
         sf::Event event;
+
+        window.draw(background); // Draw the sprite aka background
+        piece.setPosition(300,0);
+        window.draw(piece);
+        window.display();  // Update the window
 
         while (window.pollEvent(event))
         {
@@ -67,18 +75,31 @@ int main()
                 default:
                     break;
             }
-
-
         }
-
-
-
-
-
-    // Draw the sprite aka background
-    window.draw(background);
-    window.display();  // Update the window
     }
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
