@@ -1,11 +1,12 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <cstdio>
+#include "game.h"
 
 
 int main()
 {
-    
+
     sf::RenderWindow window(sf::VideoMode(900, 900), "Tic Tac Toe");     // Create the main window - window.isOpen is now set to True
     sf::Texture gameboard;      //loads the gameboard image
     sf::Texture pieces;
@@ -24,9 +25,10 @@ int main()
 
     //renders the use of the files
     sf::Sprite background(gameboard);       //puts background in window
-    sf::Sprite piece(pieces, sf::IntRect(0,0,280,280));
-    music.play();
-
+    sf::Sprite O(pieces, sf::IntRect(0,0,280,280));
+    sf::Sprite X(pieces, sf::IntRect(290,0,270,250));
+    //music.play();
+    Game match;
     // Start the game loop
     while (window.isOpen())
     {
@@ -34,72 +36,135 @@ int main()
         sf::Event event;
 
         window.draw(background); // Draw the sprite aka background
-        piece.setPosition(300,0);
-        window.draw(piece);
         window.display();  // Update the window
 
         while (window.pollEvent(event))
         {
+
             // Close window : exit
             window.display();
             if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Escape))
                 window.close();
+
             switch(event.key.code){
                 case '1':
-                    window.close();
+                    if(match.checkData(0) == 0){
+                        if(match.switchXO() == 0){
+                            X.setPosition(0,0);
+                            window.draw(X);
+                        }
+                        else{
+                            O.setPosition(0,0);
+                            window.draw(O);
+                        }
+                    }
                     break;
                 case '2':
-                    window.close();
+                     if(match.checkData(1) == 0){
+                        if(match.switchXO() == 0){
+                            X.setPosition(300,0);
+                            window.draw(X);
+                        }
+                        else{
+                            O.setPosition(300,0);
+                            window.draw(O);
+                        }
+                    }
                     break;
                 case '3':
-                    window.close();
+                    if(match.checkData(2) == 0){
+                        if(match.switchXO() == 0){
+                            X.setPosition(600,0);
+                            window.draw(X);
+                        }
+                        else{
+                            O.setPosition(600,0);
+                            window.draw(O);
+                        }
+                    }
                     break;
                 case '4':
-                    window.close();
+                    if(match.checkData(3) == 0){
+                        if(match.switchXO() == 0){
+                            X.setPosition(0,300);
+                            window.draw(X);
+                        }
+                        else{
+                            O.setPosition(0,300);
+                            window.draw(O);
+                        }
+                    }
                     break;
                 case '5':
-                    window.close();
+                    if(match.checkData(4) == 0){
+                        if(match.switchXO() == 0){
+                            X.setPosition(300,300);
+                            window.draw(X);
+                        }
+                        else{
+                            O.setPosition(300,300);
+                            window.draw(O);
+                        }
+                    }
                     break;
                 case '6':
-                    window.close();
+                    if(match.checkData(5) == 0){
+                        if(match.switchXO() == 0){
+                            X.setPosition(600,300);
+                            window.draw(X);
+                        }
+                        else{
+                            O.setPosition(600,300);
+                            window.draw(O);
+                        }
+                    }
                     break;
                 case '7':
-                    window.close();
+                    if(match.checkData(6) == 0){
+                        if(match.switchXO() == 0){
+                            X.setPosition(0,600);
+                            window.draw(X);
+                        }
+                        else{
+                            O.setPosition(0,600);
+                            window.draw(O);
+                        }
+                    }
                     break;
                 case '8':
-                    window.close();
+                    if(match.checkData(7) == 0){
+                        if(match.switchXO() == 0){
+                            X.setPosition(300,600);
+                            window.draw(X);
+                        }
+                        else{
+                            O.setPosition(300,600);
+                            window.draw(O);
+                        }
+                    }
                     break;
                 case '9':
-                    window.close();
+                    if(match.checkData(8) == 0){
+                        if(match.switchXO() == 0){
+                            X.setPosition(600,600);
+                            window.draw(X);
+                        }
+                        else{
+                            O.setPosition(600,600);
+                            window.draw(O);
+                        }
+                    }
                     break;
+                case 'r':
+                    match.reset();
                 default:
                     break;
             }
+
         }
+
     }
+
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
