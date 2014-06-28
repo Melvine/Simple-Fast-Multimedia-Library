@@ -38,17 +38,16 @@ int main()
         window.draw(background); // Draw the sprite aka background
         window.display();  // Update the window
 
-        while (window.pollEvent(event))
+        while (window.pollEvent(event) && match.referee())
         {
-
             // Close window : exit
             window.display();
             if ((event.type == sf::Event::KeyPressed) && (event.key.code == sf::Keyboard::Escape))
-                window.close();
+                window .close();
 
             switch(event.key.code){
                 case '1':
-                    if(match.checkData(0) == 0){
+                    if(match.checkData(0,0) == 0){
                         if(match.switchXO() == 0){
                             X.setPosition(0,0);
                             window.draw(X);
@@ -60,7 +59,7 @@ int main()
                     }
                     break;
                 case '2':
-                     if(match.checkData(1) == 0){
+                     if(match.checkData(0,1) == 0){
                         if(match.switchXO() == 0){
                             X.setPosition(300,0);
                             window.draw(X);
@@ -72,7 +71,7 @@ int main()
                     }
                     break;
                 case '3':
-                    if(match.checkData(2) == 0){
+                    if(match.checkData(0,2) == 0){
                         if(match.switchXO() == 0){
                             X.setPosition(600,0);
                             window.draw(X);
@@ -84,7 +83,7 @@ int main()
                     }
                     break;
                 case '4':
-                    if(match.checkData(3) == 0){
+                    if(match.checkData(1,0) == 0){
                         if(match.switchXO() == 0){
                             X.setPosition(0,300);
                             window.draw(X);
@@ -96,7 +95,7 @@ int main()
                     }
                     break;
                 case '5':
-                    if(match.checkData(4) == 0){
+                    if(match.checkData(1,1) == 0){
                         if(match.switchXO() == 0){
                             X.setPosition(300,300);
                             window.draw(X);
@@ -108,7 +107,7 @@ int main()
                     }
                     break;
                 case '6':
-                    if(match.checkData(5) == 0){
+                    if(match.checkData(1,2) == 0){
                         if(match.switchXO() == 0){
                             X.setPosition(600,300);
                             window.draw(X);
@@ -120,7 +119,7 @@ int main()
                     }
                     break;
                 case '7':
-                    if(match.checkData(6) == 0){
+                    if(match.checkData(2,0) == 0){
                         if(match.switchXO() == 0){
                             X.setPosition(0,600);
                             window.draw(X);
@@ -132,7 +131,7 @@ int main()
                     }
                     break;
                 case '8':
-                    if(match.checkData(7) == 0){
+                    if(match.checkData(2,1) == 0){
                         if(match.switchXO() == 0){
                             X.setPosition(300,600);
                             window.draw(X);
@@ -144,7 +143,7 @@ int main()
                     }
                     break;
                 case '9':
-                    if(match.checkData(8) == 0){
+                    if(match.checkData(2,2) == 0){
                         if(match.switchXO() == 0){
                             X.setPosition(600,600);
                             window.draw(X);
@@ -155,16 +154,12 @@ int main()
                         }
                     }
                     break;
-                case 'r':
-                    match.reset();
                 default:
                     break;
             }
 
         }
-
     }
 
     return 0;
 }
-
